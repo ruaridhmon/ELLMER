@@ -1,0 +1,73 @@
+<robot  name="robotiq_vacuum_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robotiq_vacuum_gripper_description)/urdf/materials.xacro" />
+
+
+<xacro:macro name="robotiq_vacuum_gripper" params="prefix">
+
+  <link name="${prefix}robotiq_vacuum_gripper_link"/>
+
+  <joint name="${prefix}robotiq_vacuum_gripper_joint" type="fixed">
+    <parent link="${prefix}robotiq_vacuum_gripper_link"/>
+    <child link="${prefix}robotiq_vacuum_base_link"/>
+  </joint>
+
+  <link name="${prefix}robotiq_vacuum_base_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://robotiq_vacuum_gripper_description/urdf/meshes/epick.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      <material name="dark_grey"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://robotiq_vacuum_gripper_description/urdf/meshes/epick.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+  </link>
+
+
+
+  <joint name="${prefix}robotiq_vacuum_gripper_assembly_joint" type="fixed">
+    <parent link="${prefix}robotiq_vacuum_base_link"/>
+    <child link="${prefix}robotiq_vacuum_gripper_assembly_link"/>
+    <origin rpy="0 0 0" xyz="0 -0.101 0"/>
+  </joint>
+
+  <link name="${prefix}robotiq_vacuum_gripper_assembly_link"/>
+
+  <joint name="${prefix}robotiq_vacuum_gripper_suction_joint" type="fixed">
+    <parent link="${prefix}robotiq_vacuum_gripper_assembly_link"/>
+    <child link="${prefix}grasp_point"/>
+    <origin rpy="0 0 0" xyz="0 -0.028 0"/>
+  </joint>
+
+  <link name="${prefix}grasp_point">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <sphere radius="0.005"/>
+        </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+ </xacro:macro>
+
+<xacro:macro name="robotiq_vacuum_gripper_mount" params="prefix parent *origin">
+
+    <joint name="${prefix}robotiq_vacuum_gripper_mount_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${prefix}robotiq_vacuum_gripper_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <xacro:robotiq_vacuum_gripper prefix="${prefix}"/>
+
+  </xacro:macro>
+
+
+</robot>  

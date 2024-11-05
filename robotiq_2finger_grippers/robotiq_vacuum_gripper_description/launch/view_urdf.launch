@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Name of the robot description parameter -->
+  <arg name="description_name"         default="robot_description"/>
+  <!-- Set robot description path -->
+  <arg name="joint_states_topic"       default="/joint_states"/>
+
+  <arg name="rviz" default="true" />
+
+  <include file="$(find robotiq_vacuum_gripper_description)/launch/load.launch">
+  </include>
+
+
+  <!-- Joint state publisher -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" output="screen">
+    <param name="use_gui"           value="true"/>
+    <param name="rate"              value="100"/>
+    <remap from="robot_description" to="$(arg description_name)"/>
+    <remap from="joint_states"      to="$(arg joint_states_topic)"/>
+  </node>
+
+  <!-- Robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="100"/>
+    <param name="use_tf_static"     value="true"/>
+    <remap from="robot_description" to="$(arg description_name)"/>
+    <remap from="joint_states"      to="$(arg joint_states_topic)"/>
+  </node>
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find robotiq_vacuum_gripper_description)/config/display_urdf.rviz" /> 
+</launch>

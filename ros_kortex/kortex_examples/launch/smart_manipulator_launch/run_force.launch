@@ -1,0 +1,21 @@
+<launch>
+    <node pkg="netft_rdt_driver" type="netft_node" name="netft" output="screen" args="--address 192.168.2.200 --rate 100" ns="netft"/>
+
+    <arg name="robot_name" default="my_gen3"/>
+    <arg name="start_delay_seconds" default="0"/>
+
+    <param name="robot_description_kortex" command="$(find xacro)/xacro --inorder '$(find kortex_description)/arms/gen3/7dof/urdf/kinova_urdf.urdf'"/>
+
+
+    <node
+        name="EEF_pose_node"
+        pkg="kortex_examples"
+        ns="/$(arg robot_name)"
+        type="EEF_pose.py"
+        output="screen"
+        launch-prefix="bash -c 'sleep $(arg start_delay_seconds); $0 $@' "
+        >
+        <param name="link_ee" type="string" value="tool_frame"/>
+    </node>
+
+</launch>

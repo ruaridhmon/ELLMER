@@ -1,0 +1,6 @@
+<launch>
+
+  <param name="robot_description"
+         command="$(find xacro)/xacro $(find robotiq_vacuum_gripper_description)/urdf/epick.urdf.xacro"/>
+ 
+</launch>

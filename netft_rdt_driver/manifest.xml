@@ -1,0 +1,22 @@
+<package>
+  <description brief="netft_rdt_driver">
+
+     Driver for NetFT sensor that uses Raw Data Transfer (RDT) protocol.
+
+  </description>
+  <author>Derek King</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/netft_rdt_driver</url>
+  <depend package="roscpp"/>
+  <depend package="diagnostic_updater"/>
+  <depend package="diagnostic_msgs"/>
+  <depend package="geometry_msgs"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-L${prefix}/lib -lnetft_rdt_driver -Wl,-rpath,${prefix}/lib"/>
+  </export>
+
+</package>
+
+

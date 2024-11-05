@@ -1,0 +1,4 @@
+# ZeroAxis.srv
+string axis  # 'x', 'y', 'z', 'tx', 'ty', or 'tz'
+---
+bool success  # True if the operation was successful

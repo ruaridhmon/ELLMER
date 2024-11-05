@@ -1,0 +1,5 @@
+<launch>
+
+    <node name="vision_module" pkg="third_party" type="kinova_vision.py" output="screen"/>
+
+</launch>

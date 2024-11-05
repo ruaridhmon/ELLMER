@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>third_party</name>
+  <version>2.2.2</version>
+  <description>The package is for the Azure Kinect</description>
+  <maintainer email="support@kinova.ca">Kinova Support</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rospy</exec_depend>
+
+  <export>
+  </export>
+</package>

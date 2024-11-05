@@ -1,0 +1,8 @@
+<launch>
+
+    <arg name="robot_name" default="my_gen3"/>
+    <arg name="start_delay_seconds" default="0"/>
+
+    <node name="ELLMER" pkg="kortex_examples" type="robot_affordances.py" ns="$(arg robot_name)" output="screen" launch-prefix="bash -c 'sleep $(arg start_delay_seconds); $0 $@' "/>
+
+</launch>

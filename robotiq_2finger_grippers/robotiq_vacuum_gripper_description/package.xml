@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robotiq_vacuum_gripper_description</name>
+  <version>1.0.0</version>
+  <description>Robotiq epick vacuum gripper description package</description>
+  <license>BSD</license>
+  <url type="website">http://ros.org/wiki/robotiq</url>
+  <author email="russell.buchanan@ed.ac.uk">Russell Buchanan</author>
+  <maintainer email="russell.buchanan@ed.ac.uk">Russell Buchanan</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>urdf</exec_depend>
+
+</package>

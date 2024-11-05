@@ -1,0 +1,59 @@
+<robot  name="robotiq_vacuum_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robotiq_vacuum_gripper_description)/urdf/materials.xacro" />
+
+
+  <link name="robotiq_vacuum_gripper_link"/>
+
+  <joint name="robotiq_vacuum_gripper_joint" type="fixed">
+    <parent link="robotiq_vacuum_gripper_link"/>
+    <child link="robotiq_vacuum_base_link"/>
+  </joint>
+
+  <link name="robotiq_vacuum_base_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://robotiq_vacuum_gripper_description/urdf/meshes/epick.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://robotiq_vacuum_gripper_description/urdf/meshes/epick.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+  </link>
+
+
+
+  <joint name="robotiq_vacuum_gripper_assembly_joint" type="fixed">
+    <parent link="robotiq_vacuum_base_link"/>
+    <child link="robotiq_vacuum_gripper_assembly_link"/>
+    <origin rpy="0 0 0" xyz="0 -0.101 0"/>
+  </joint>
+
+  <link name="robotiq_vacuum_gripper_assembly_link"/>
+
+  <joint name="robotiq_vacuum_gripper_suction_joint" type="fixed">
+    <parent link="robotiq_vacuum_gripper_assembly_link"/>
+    <child link="robotiq_vacuum_gripper_suction_point"/>
+    <origin rpy="0 0 0" xyz="0 -0.028 0"/>
+  </joint>
+
+  <link name="robotiq_vacuum_gripper_suction_point">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <sphere radius="0.005"/>
+        </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+
+
+
+</robot>  
